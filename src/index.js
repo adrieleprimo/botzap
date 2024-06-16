@@ -1,7 +1,8 @@
-const { Client} = require('whatsapp-web.js');
+const { Client, NoAuth} = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 
 const client = new Client({
+    authStrategy: new NoAuth(),
     webVersionCache: {
         type: "remote",
         remotePath:
@@ -17,4 +18,8 @@ client.on('ready', ()=>{
     console.log('Client is ready');
 });
 
+client.on('message_create', message =>{
+    if(message.body === "Bom dia!"){
+        client.sendMessage(message.from, 'Bom dia!');    }
+});
 client.initialize();
