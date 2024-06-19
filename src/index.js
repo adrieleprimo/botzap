@@ -1,14 +1,7 @@
-const { Client, NoAuth} = require('whatsapp-web.js');
+const client = require('./client');
 const qrcode = require('qrcode-terminal');
-
-const client = new Client({
-    authStrategy: new NoAuth(),
-    webVersionCache: {
-        type: "remote",
-        remotePath:
-        "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html",
-    },
-});
+const emoji = require('node-emoji');
+const { Events } = require('whatsapp-web.js');
 
 client.once('qr', (qr)=>{
    qrcode.generate(qr, {small: true});
@@ -18,8 +11,11 @@ client.on('ready', ()=>{
     console.log('Client is ready');
 });
 
-client.on('message_create', message =>{
-    if(message.body === "Bom dia!"){
-        client.sendMessage(message.from, 'Bom dia!');    }
+const bomDiaRegex = /\bbom\s*dia\b/i;
+
+client.on('message', async(message) => {
+    if (bomDiaRegex.test(message.body))  {
+         await message.reply(`Bom dia ${emoji.get(':heart:')}`); 
+}
 });
 client.initialize();
