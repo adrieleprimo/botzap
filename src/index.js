@@ -1,7 +1,6 @@
 const client = require('./client');
 const qrcode = require('qrcode-terminal');
 const emoji = require('node-emoji');
-const { Events } = require('whatsapp-web.js');
 
 client.once('qr', (qr)=>{
    qrcode.generate(qr, {small: true});
