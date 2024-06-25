@@ -17,14 +17,17 @@ const bomDiaRegex = /\bbom\s*dia\b/i;
 client.on('message', async(message) => {
     try{
         let contact = (await client.getContactById(message.from)).name;
+        let group = ((await client.getChatById(message.from)).isGroup);
+        let replyMessage = `Bom dia, ${contact}${emoji.get(':heart:')}`;
+    
         if (bomDiaRegex.test(message.body)){
-            let replyMessage = `Bom dia ${contact}${emoji.get(':heart:')}`;
-            if(!contact){
+            if(!contact || group){
                 replyMessage = `Bom dia ${emoji.get(':heart:')}`;
             }
             await message.reply(replyMessage); 
             logger.info(`Replied to Bom dia message from ${message.from}`); 
-    }        
+    }    
+    
 }catch(error){
         logger.error(`Error handling message:${error}`);
 }
