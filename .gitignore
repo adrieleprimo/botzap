@@ -1,4 +1,4 @@
 /node_modules
 /whatsappSession
 /.wwebjs_auth
-/bot.log
+/src/logs/bot.log
