@@ -1,7 +1,7 @@
 const client = require('./client');
 const qrcode = require('qrcode-terminal');
-const emoji = require('node-emoji');
 const logger = require('./winstonLogger');
+const { goodMorningAnswer } = require('./controllers/goodMorning');
 
 client.once('qr', (qr)=>{
    qrcode.generate(qr, {small: true});
@@ -15,21 +15,6 @@ client.on('ready', ()=>{
 const bomDiaRegex = /\bbom\s*dia\b/i;
 
 client.on('message', async(message) => {
-    try{
-        let contact = (await client.getContactById(message.from)).name;
-        let group = ((await client.getChatById(message.from)).isGroup);
-        let replyMessage = `Bom dia, ${contact}${emoji.get(':heart:')}`;
-    
-        if (bomDiaRegex.test(message.body)){
-            if(!contact || group){
-                replyMessage = `Bom dia ${emoji.get(':heart:')}`;
-            }
-            await message.reply(replyMessage); 
-            logger.info(`Replied to Bom dia message from ${message.from}`); 
-    }    
-    
-}catch(error){
-        logger.error(`Error handling message:${error}`);
-}
+    await goodMorningAnswer(client, message, logger);
 });
 client.initialize();
