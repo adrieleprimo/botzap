@@ -3,7 +3,7 @@
 ![GitHub branch status](https://img.shields.io/github/checks-status/adrieleprimo/botzap/master)
 
 <h1 align="center"> Botzap </h1>
-I grew up with the importance of good morning, good afternoon and good evening. So I often ended up forgetting to say them, especially on Whatsapp. So I created this bot with the aim of making these greetings on the Whatsapp social network.
+I grew up with the importance of good morning, good afternoon and good evening. So I often ended up forgetting to say them, especially on Whatsapp. So I created this bot with the aim of making these greetings on the Whatsapp social network 
 In general, this project followed on from reading the book Javascript: The Definitive Guide and a very important text by Rodrigo "Pokemaobr" Cardoso entitled "Sou iniciante em desenvolvimento, que projetos devo fazer no meu github? " on dev.to.
 
 Link:
